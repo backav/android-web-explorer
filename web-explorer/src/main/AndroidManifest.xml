@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="li.xiangyang.android.android_webexplorer">
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <application>
+        <activity
+            android:name=".WebExplorerActivity"
+            android:theme="@style/WebExplorerTheme"></activity>
+    </application>
+
+</manifest>
