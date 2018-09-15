@@ -2,7 +2,6 @@
 
     <!-- Base application theme. -->
     <style name="WebExplorerTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:fitsSystemWindows">false</item>
     </style>

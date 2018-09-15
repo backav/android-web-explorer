@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.btnOpen).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WebExplorerActivity.open(MainActivity.this, "http://hao123.com");
+                WebExplorerActivity.open(MainActivity.this, "http://passport.qicyc.com/privacy/data/interest");
             }
         });
     }
