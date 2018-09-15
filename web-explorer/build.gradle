@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         minSdkVersion 14
@@ -20,8 +20,9 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'li.xiangyang.android:touchable-controls:0.3'
+
+    compile 'com.android.support:appcompat-v7:27.1.1'
+    compile 'li.xiangyang.android:touchable-controls:0.5'
 }
 
 
@@ -31,13 +32,12 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group = "li.xiangyang.android"
-version = "0.4"
+version = "0.5.1"
 
 def siteUrl = 'https://github.com/backav/android-web-explorer'    // project homepage
 def gitUrl = 'https://github.com/backav/android-web-explorer.git' // project git
 def pkgName = 'android-web-explorer'
 def pkgDesc = 'Web Explorer for Android'
-
 
 // 根节点添加
 install {
@@ -57,8 +57,8 @@ install {
                 developers {
                     developer {
                         id 'backav'
-                        name 'xiangyang li'
-                        email 'wo@xiangyang.li'
+                        name 'sh4wn'
+                        email 'shawn@xiangyang.li'
                     }
                 }
                 scm {

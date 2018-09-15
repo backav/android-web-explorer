@@ -13,6 +13,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
+import java.io.Serializable;
+import java.util.Map;
+
 
 public class WebExplorerActivity extends Activity {
 
@@ -36,7 +39,7 @@ public class WebExplorerActivity extends Activity {
             }
         });
 
-        webView.setWebChromeClient(new WebChromeClient(){
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 setTitle(title);
@@ -58,12 +61,28 @@ public class WebExplorerActivity extends Activity {
         });
 
         Intent in = getIntent();
-        webView.loadUrl(in.getStringExtra(EXTRA_URL));
+        if (in.hasExtra("headers")) {
+            Serializable serializable = in.getSerializableExtra("headers");
+            if (serializable instanceof HeaderMap) {
+                webView.loadUrl(in.getStringExtra(EXTRA_URL), ((HeaderMap) serializable).getMap());
+            } else {
+                throw new RuntimeException("不支持的headers类型:" + serializable.getClass());
+            }
+        } else {
+            webView.loadUrl(in.getStringExtra(EXTRA_URL));
+        }
     }
 
     public static void open(Context context, String url) {
         Intent in = new Intent(context, WebExplorerActivity.class);
         in.putExtra(EXTRA_URL, url);
+        context.startActivity(in);
+    }
+
+    public static void open(Context context, String url, Map<String, String> headers) {
+        Intent in = new Intent(context, WebExplorerActivity.class);
+        in.putExtra(EXTRA_URL, url);
+        in.putExtra("headers", new HeaderMap(headers));
         context.startActivity(in);
     }
 
@@ -79,8 +98,8 @@ public class WebExplorerActivity extends Activity {
         return findViewById(R.id.btnClose);
     }
 
-    protected void setTitle(String title){
-        ((TextView)findViewById(R.id.txtTitle)).setText(title);
+    protected void setTitle(String title) {
+        ((TextView) findViewById(R.id.txtTitle)).setText(title);
     }
 
     private void clickBack() {
