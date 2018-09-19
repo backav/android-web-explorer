@@ -1,9 +1,11 @@
 package li.xiangyang.android.android_webexplorer;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -24,6 +26,7 @@ public class WebExplorerActivity extends Activity {
 
     private WebView webView;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,11 @@ public class WebExplorerActivity extends Activity {
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(false);
+        settings.setDomStorageEnabled(true);
+
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+//            webView.setWebContentsDebuggingEnabled(true);
+//        }
 
         webView.setWebViewClient(new WebViewClient() {
             @Override
